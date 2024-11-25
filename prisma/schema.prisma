@@ -13,8 +13,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Book {
+model Employee {
   id Int @id @default(autoincrement())
-  title String
-  author String
+  firstName String
+  lastName String
 }

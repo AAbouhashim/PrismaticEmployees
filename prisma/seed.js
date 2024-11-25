@@ -1,31 +1,27 @@
 const prisma = require("../prisma");
 
-
 const seed = async () => {
-  const books = [
-      { title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-      { title: '1984', author: 'George Orwell' },
-      { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-      { title: 'Pride and Prejudice', author: 'Jane Austen' },
-      { title: 'Moby Dick', author: 'Herman Melville' },
-      { title: 'The Catcher in the Rye', author: 'J.D. Salinger' },
-      { title: 'The Alchemist', author: 'Paulo Coelho' },
-      { title: 'The Kite Runner', author: 'Khaled Hosseini' },
-      { title: 'Jane Eyre', author: 'Charlotte Brontë' },
-      { title: 'The Hobbit', author: 'J.R.R. Tolkien' }
-    ];
+  const employees = [
+    { firstName: "John", lastName: "Doe" },
+    { firstName: "Jane", lastName: "Smith" },
+    { firstName: "Alice", lastName: "Johnson" },
+    { firstName: "Bob", lastName: "Brown" },
+    { firstName: "Charlie", lastName: "Davis" },
+    { firstName: "Diana", lastName: "Clark" },
+    { firstName: "Eve", lastName: "Adams" },
+    { firstName: "Frank", lastName: "Miller" },
+    { firstName: "Grace", lastName: "Lee" },
+    { firstName: "Hank", lastName: "White" },
+  ];
 
-    await prisma.book.createMany({data: books});
-  };
-
-
-seed()
-  .then(async () => {
-    console.log("Seeding Complete");
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
+  try {
+    await prisma.employee.createMany({ data: employees });
+    console.log("Seed data inserted successfully.");
+  } catch (e) {
     console.error(e);
+  } finally {
     await prisma.$disconnect();
-    process.exit(1);
-  });
+  }
+};
+
+seed();

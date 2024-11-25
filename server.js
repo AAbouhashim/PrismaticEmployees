@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
-const booksRouter = require("./api/books");
+const employeesRouter = require("./api/employees");
 
-// Middleware for parsing JSON
 app.use(express.json());
 
-// Books router
-app.use("/books", booksRouter);
+// Root route
+app.get("/", (req, res) => {
+  res.send("Welcome to the Employee API. Navigate to /employees.");
+});
+
+// Employees router
+app.use("/employees", employeesRouter);
 
 // 404 middleware
 app.use((req, res, next) => {
